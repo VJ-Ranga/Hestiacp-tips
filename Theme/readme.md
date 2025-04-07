@@ -1,0 +1,1106 @@
+# Complete Dark Theme for Hestia Control Panel
+
+A dark theme for Hestia Control Panel featuring a modern, flat design with a consistent dark color scheme throughout the interface.
+
+## Features
+
+- Dark color scheme with gold accent colors
+- Flat, modern UI design
+- Consistent dark backgrounds for all interface elements
+- Enhanced code editor styling
+- Custom scrollbars
+- Improved form controls
+- Modern button styling
+
+## Installation
+
+1. Create a new CSS file at:
+
+```bash
+sudo nano /usr/local/hestia/web/css/themes/custom/complete-dark.css
+```
+
+2. Copy and paste the following CSS code:
+
+```css
+/*
+    Theme Name:  Complete Dark
+    Based on:    Dark theme by Kristan Kenney with VJ customizations
+    Website:     www.hestiacp.com
+*/
+
+@import url("../media_queries");
+
+:root {
+    /* Colors */
+    --color-text: #cdcdcd;
+    --color-text-link: #4fabe9;
+    --color-text-link-hover: #ffc043; /* Changed to match your custom gold color */
+    --color-text-heading: #e8e8e8;
+    --color-background: #1e1e1e; /* Darker background */
+    --color-background-lighter: #282828;
+    --color-background-light: #333333;
+    --color-content-bg: #1e1e1e; /* For main content area */
+
+    /* Alerts */
+    --alert-border-color: #212121;
+    --alert-danger-color: #d13535;
+
+    /* Icons */
+    --icon-color-purple: #c364ff;
+    --icon-color-maroon: #ff3478;
+    --icon-color-green: #37cf39;
+    --icon-color-blue: #0092f4;
+
+    /* Top Bar */
+    --top-bar-background: #1e1e1e;
+    --top-bar-box-shadow: none;
+    --top-bar-border-bottom: none;
+
+    /* Charts */
+    --chart-label-color: #cdcdcd;
+    --chart-grid-color: #434343;
+    
+    /* Table colors */
+    --table-header-bg: #0e0e0e;
+    --table-row-bg: #282828;
+    --table-row-hover-bg: #333;
+    --table-border-color: #333;
+    
+    /* Button colors */
+    --button-bg: #4f4d4d;
+    --button-hover-bg: #5a5858;
+    
+    /* Form colors */
+    --input-bg: #232323;
+    --input-border: #444444;
+    --input-focus-border: #ffc043;
+}
+
+/* Global styles - ensure dark backgrounds everywhere */
+body, 
+.app, 
+.container, 
+.body-content {
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-heading);
+}
+
+/* Top bar
+   ========================================================================== */
+
+.top-bar {
+    background: var(--top-bar-background);
+    box-shadow: none;
+    border-bottom: none;
+    z-index: 2;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    position: fixed;
+    top: 0;
+}
+
+.top-bar-usage-inner {
+    color: #909090;
+}
+
+.top-bar-usage-item {
+    color: #cacaca;
+
+    & .fas {
+        color: #909090;
+    }
+}
+
+.top-bar-notifications-panel {
+    background-color: var(--color-background-lighter);
+    border: 1px solid var(--table-border-color);
+
+    @media (--viewport-small) {
+        border-color: #404040;
+    }
+}
+
+.top-bar-notifications-empty {
+    color: #dadada;
+
+    & .fas {
+        color: #dadada;
+    }
+}
+
+.top-bar-notification-item {
+    text-shadow: none;
+    color: #dadada;
+    border-bottom-color: var(--color-background);
+
+    &.unseen .top-bar-notification-title {
+        color: #fff;
+    }
+}
+
+.top-bar-notification-delete {
+    & .fas {
+        color: #ff3478;
+    }
+}
+
+.top-bar-notifications-delete-all {
+    border-top-color: var(--color-background);
+}
+
+.top-bar-menu-panel {
+    background-color: var(--top-bar-background);
+}
+
+.top-bar-menu-link {
+    &:hover, 
+    &:active {
+        color: var(--color-text-link-hover);
+        text-shadow: none;
+        background: none;
+        box-shadow: none;
+        border-left-color: transparent;
+        border-right-color: transparent;
+    }
+
+    &.active {
+        color: var(--color-text-link-hover);
+        text-shadow: none;
+        background: none;
+        border-left-color: transparent;
+        border-right-color: transparent;
+    }
+}
+
+.top-bar-menu-link-logout {
+    color: #e7e7e7;
+}
+
+/* Table Header Styling - Critical for consistent dark theme
+   ========================================================================== */
+
+/* Ensures dark table headers on desktop */
+@media (min-width: 1024px) {
+    .units-table-header {
+        background: #4b4b4b;
+        border-bottom: 1px solid #282828;
+        border-left: 1px solid #282828;
+        border-right: 1px solid #282828;
+        display: table-row;
+        box-shadow: none;
+    }
+}
+
+/* Table row hover effect with subtle border highlights */
+@media (min-width: 1024px) {
+    .units-table-row:hover {
+        background-color: #272727;
+        border-left-color: #939393;
+        border-right-color: #adadad;
+        box-shadow: none;
+    }
+}
+
+/* Main menu
+   ========================================================================== */
+
+.main-menu-toggle {
+    &:hover {
+        & .main-menu-toggle-label {
+            color: #d7d7d7;
+        }
+    }
+
+    & .fas {
+        color: #d7d7d7;
+    }
+}
+
+.main-menu-toggle-label {
+    color: #bcbcbc;
+}
+
+.main-menu-list {
+    border-top-color: #454545;
+}
+
+.main-menu-item-link {
+    &:hover {
+        & .main-menu-item-label {
+            color: var(--color-text-link-hover);
+        }
+    }
+
+    &.active {
+        & .main-menu-item-label {
+            color: var(--color-text-link-hover);
+
+            & .fas {
+                color: #d7d7d7;
+            }
+        }
+    }
+
+    @media (--viewport-medium) {
+        border-bottom-color: var(--color-background);
+
+        &:hover {
+            border-bottom-color: var(--color-text-link-hover);
+        }
+
+        &.active {
+            border-bottom-color: var(--color-text-link-hover);
+        }
+    }
+}
+
+.main-menu-item-label {
+    font-weight: 500;
+    color: #bcbcbc;
+
+    & .fas {
+        color: #707070;
+    }
+}
+
+/* Toolbar
+   ========================================================================== */
+
+.toolbar {
+    border: none;
+    background-color: var(--color-background-lighter);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 10px;
+
+    &.active {
+        box-shadow: none;
+    }
+
+    & .form-select {
+        border-color: var(--input-border);
+        background-color: var(--input-bg);
+
+        &:hover {
+            background-color: var(--input-bg);
+            border-color: var(--color-text-link-hover);
+        }
+    }
+
+    & .form-control {
+        border-color: var(--input-border);
+        background-color: var(--input-bg);
+
+        &:hover {
+            background-color: var(--input-bg);
+            border-right-color: var(--color-text-link-hover);
+        }
+
+        &:focus {
+            border-right-color: var(--color-text-link-hover);
+        }
+    }
+}
+
+.toolbar-sorting-toggle {
+    &:hover {
+        color: #aaa;
+
+        & span {
+            color: #aaa;
+        }
+    }
+}
+
+.toolbar-sorting-menu {
+    background-color: var(--color-background-lighter);
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.5);
+    border-color: var(--table-border-color);
+
+    & li {
+        border-bottom: 1px solid #454545;
+        color: #dadada;
+    }
+
+    & span {
+        &:hover {
+            color: var(--color-text-link-hover);
+            background: none;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        &:active,
+        &:focus {
+            background: none;
+            color: var(--color-text-link-hover);
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        &.active {
+            color: var(--color-text-link-hover);
+            background: none;
+            text-shadow: none;
+            font-weight: bold;
+        }
+    }
+}
+
+.toolbar-input-submit {
+    border: none;
+    background-color: var(--button-bg);
+    text-shadow: none;
+    box-shadow: none;
+    color: #e0e0e0;
+    border-radius: 0 4px 4px 0;
+
+    &:hover {
+        color: #ffffff;
+        background-color: var(--button-hover-bg);
+    }
+
+    &:active {
+        color: var(--color-text-link-hover);
+        text-shadow: none;
+        box-shadow: none;
+    }
+}
+
+.toolbar-link {
+    color: #dadada;
+
+    &.selected {
+        color: var(--color-text-link-hover);
+    }
+
+    &:hover {
+        color: var(--color-text-link-hover);
+    }
+}
+
+/* Button styling - flat, modern buttons */
+@media (min-width: 1024px) {
+    .toolbar-buttons .button {
+        width: auto;
+        background: var(--button-bg);
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        padding: 8px 15px;
+        text-shadow: none;
+        box-shadow: none;
+    }
+    
+    .toolbar-buttons .button:hover {
+        background: var(--button-hover-bg);
+        text-shadow: none;
+        box-shadow: none;
+        border: none;
+    }
+}
+
+/* Cards
+   ========================================================================== */
+
+.card {
+    background-color: var(--color-background-lighter);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+    color: #fafafa;
+    text-shadow: none;
+}
+
+/* Clipboard component
+   ========================================================================== */
+
+.clipboard {
+    & .clipboard-input {
+        border-color: var(--input-border);
+        background-color: var(--input-bg);
+    }
+}
+
+.clipboard-button {
+    background-color: var(--button-bg);
+    color: #e0e0e0;
+}
+
+/* Server summary component
+   ========================================================================== */
+
+.server-summary-icon {
+    color: #707070;
+}
+
+/* Panel component
+   ========================================================================== */
+
+.panel {
+    background-color: var(--color-background-lighter);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Box collapse component
+   ========================================================================== */
+
+.box-collapse-header {
+    background: var(--color-background-lighter);
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Collapse component
+   ========================================================================== */
+
+.collapse-header {
+    border-bottom-color: #484848;
+}
+
+/* Units table
+   ========================================================================== */
+
+.units-table {
+    background-color: var(--color-background);
+}
+
+/* Table Headers */
+@media (--viewport-large) {
+    .units-table-header {
+        background: var(--table-header-bg);
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        display: table-row;
+        box-shadow: none;
+        text-shadow: none;
+        color: #e0e0e0;
+        padding: 10px;
+    }
+}
+
+.units-table-row {
+    border-color: var(--table-border-color);
+    background-color: var(--table-row-bg);
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+    &.selected {
+        background-color: #353535;
+        box-shadow: none;
+    }
+
+    &.disabled {
+        color: #606060;
+        background-color: #252525;
+
+        &.selected {
+            color: #aaa;
+            background-color: #353535;
+        }
+    }
+
+    &.focus {
+        background-color: #353535;
+    }
+
+    @media (--viewport-large) {
+        &:hover {
+            background-color: var(--table-row-hover-bg);
+            border-color: #444;
+            box-shadow: none;
+        }
+
+        &.selected {
+            border-left-color: #444;
+            border-right-color: #444;
+
+            &:hover {
+                background-color: #404040;
+            }
+        }
+
+        &.disabled {
+            &:hover {
+                background-color: #252525;
+            }
+
+            &.selected:hover {
+                color: #aaa;
+                background-color: #353535;
+            }
+        }
+    }
+}
+
+.units-table-cell {
+    padding: 10px;
+    
+    & a {
+        color: var(--color-text-link);
+
+        &:hover {
+            color: var(--color-text-link-hover);
+        }
+    }
+}
+
+.units-table-row-action-link {
+    border-color: #454545;
+    background-color: transparent;
+
+    @media (--viewport-large) {
+        background-color: transparent;
+    }
+}
+
+.units-table-badge {
+    @media (--viewport-large) {
+        color: #e0e0e0;
+        border-color: #444;
+        box-shadow: none;
+        text-shadow: none;
+        background-color: #333;
+        border-radius: 4px;
+        padding: 4px 8px;
+    }
+}
+
+/* Statistics
+   ========================================================================== */
+
+.stats-item {
+    border-bottom-color: #404040;
+    background-color: var(--color-background-lighter);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+
+    @media (--viewport-large) {
+        &:hover {
+            background-color: #353535;
+            border-color: #444;
+            box-shadow: none;
+        }
+    }
+}
+
+.stats-item-header-title {
+    color: #eee;
+}
+
+.stats-value {
+    color: var(--color-text-link-hover);
+    font-weight: bold;
+}
+
+.stats-item-summary-title {
+    border-bottom-color: #444;
+}
+
+/* Forms
+   ========================================================================== */
+
+.form-label,
+.form-check label {
+    color: #d4d4d4;
+}
+
+.form-control {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: #d4d4d4;
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+
+    &:hover {
+        border-color: var(--color-text-link-hover);
+        background-color: var(--input-bg);
+    }
+
+    &:focus {
+        background-color: #262626;
+        border-color: var(--input-focus-border);
+        color: #fff;
+        box-shadow: none;
+    }
+
+    &.list-editor:focus {
+        background-color: #262626;
+        box-shadow: none;
+    }
+}
+
+.form-select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: #d4d4d4;
+    text-shadow: none;
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+
+    &:hover {
+        border-color: var(--color-text-link-hover);
+        background-color: var(--input-bg);
+    }
+
+    &:focus {
+        background-color: #262626;
+        border-color: var(--input-focus-border);
+        color: #fff;
+        box-shadow: none;
+    }
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background-color: #2a2a2a;
+    text-shadow: none;
+    color: #999;
+    border-color: #555;
+
+    &:hover {
+        border-color: #555;
+    }
+}
+
+.form-link {
+    color: var(--color-text-link);
+    
+    &:hover {
+        color: var(--color-text-link-hover);
+    }
+}
+
+.form-link-danger {
+    &:hover {
+        background-color: #ff3478;
+    }
+
+    &:active {
+        background-color: #be1f54;
+    }
+}
+
+.unlimited-toggle {
+    & .fas {
+        color: #d4d4d4;
+    }
+}
+
+.hint {
+    color: #a2a2a2;
+}
+
+/* Buttons
+   ========================================================================== */
+
+.button {
+    color: #eee;
+    text-shadow: none;
+    font-weight: 400;
+    border: none;
+    background: var(--button-bg);
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+
+    &:hover {
+        color: #fff;
+        text-shadow: none;
+        border: none;
+        background: var(--button-hover-bg);
+        box-shadow: none;
+    }
+
+    &:active {
+        color: #d4d4d4;
+        text-shadow: none;
+        border: none;
+        background: #404040;
+        box-shadow: none;
+    }
+    
+    /* Make sure icons are visible */
+    & .fas {
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
+
+.button-secondary {
+    border: none;
+    background: #404040;
+
+    &:hover {
+        background: #4a4a4a;
+        border: none;
+    }
+    
+    &:active {
+        background: #353535;
+        border: none;
+    }
+}
+
+.button-danger {
+    background: #d13535;
+    
+    &:hover {
+        background: #e74c3c;
+        color: #fff;
+        text-shadow: none;
+        border: none;
+    }
+
+    &:active,
+    &:focus {
+        background: #c0392b;
+        color: #fff;
+        text-shadow: none;
+        border: none;
+    }
+}
+
+/* Login
+   ========================================================================== */
+
+.page-login,
+.page-reset {
+    background: var(--color-background);
+}
+
+@media (min-width: 480px) {
+    .login {
+        background-color: #1a1a1ab3;
+    }
+}
+
+.login {
+    & .error {
+        color: #f864fa;
+    }
+
+    @media (--viewport-small) {
+        background-color: var(--color-background-lighter);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+
+        & .form-label {
+            color: #e0e0e0;
+        }
+    }
+}
+
+.login-title {
+    color: #fff;
+}
+
+.login-form-link {
+    color: var(--color-text-link);
+    text-transform: initial;
+    font-weight: 400;
+
+    &:hover {
+        color: var(--color-text-link-hover);
+    }
+}
+
+.qr-code {
+    border: 1px solid #444;
+    box-shadow: none;
+}
+
+.console-output {
+    color: #dadada;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+}
+
+/* Spinner
+   ========================================================================== */
+
+.spinner-overlay {
+    & .fas {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* Icon component
+   ========================================================================== */
+
+.icon-highlight {
+    color: #dadada;
+
+    &:hover {
+        color: var(--color-text-link-hover);
+    }
+}
+
+.icon-dim {
+    color: #808080;
+    text-shadow: none;
+}
+
+/* Modals
+   ========================================================================== */
+
+.modal {
+    background-color: var(--color-background-lighter);
+    border: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.modal-title {
+    color: var(--color-text-link-hover);
+}
+
+.modal-message {
+    color: #dadada;
+}
+
+.modal-options {
+    border-top: 1px solid #444;
+}
+
+/* Shortcuts modal
+   ========================================================================== */
+
+.shortcuts {
+    background-color: var(--color-background-lighter);
+    border-color: #444;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.shortcuts-header {
+    border-bottom: 1px solid #444;
+}
+
+.shortcuts-title,
+.shortcuts .key {
+    color: var(--color-text-link-hover);
+}
+
+/* Tabs component
+   ========================================================================== */
+
+.tabs {
+    box-shadow: none;
+    border: none;
+    background-color: var(--color-background-lighter);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.tabs-item {
+    color: #cacaca;
+    padding: 8px 15px;
+
+    &:hover,
+    &[aria-selected="true"] {
+        color: var(--color-text-link-hover);
+    }
+}
+
+/* App footer
+   ========================================================================== */
+
+.app-footer {
+    color: #cdcdcd;
+    border-color: #444;
+    padding: 15px 0;
+    background-color: var(--color-background);
+}
+
+.app-footer-link {
+    color: var(--color-text-link);
+    
+    &:hover {
+        color: var(--color-text-link-hover);
+    }
+}
+
+/* Inline alerts
+   ========================================================================== */
+
+.inline-alert-success {
+    background-color: rgba(55, 207, 57, 0.1);
+    border-left: 4px solid var(--icon-color-green);
+    padding: 10px;
+    border-radius: 4px;
+    
+    & a {
+        color: #fff;
+
+        &:hover {
+            color: var(--color-text-link-hover);
+        }
+    }
+}
+
+.inline-alert-danger {
+    background-color: rgba(209, 53, 53, 0.1);
+    border-left: 4px solid var(--alert-danger-color);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.inline-alert-warning {
+    background-color: rgba(255, 192, 67, 0.1);
+    border-left: 4px solid var(--color-text-link-hover);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Debug panel
+   ========================================================================== */
+
+.debug-panel-content {
+    background-color: var(--color-background-lighter);
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Code editor and file editing
+   ========================================================================== */
+
+.editor-container {
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    border: 1px solid #333;
+}
+
+pre, code, .CodeMirror, .editor-area {
+    background-color: #1a1a1a;
+    color: #cdcdcd;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.CodeMirror-gutters {
+    background-color: #151515;
+    border-right: 1px solid #333;
+}
+
+.CodeMirror-linenumber {
+    color: #666;
+}
+
+/* Syntax highlighting for code editor */
+.cm-keyword, .cm-tag {
+    color: #ff79c6;
+}
+
+.cm-string {
+    color: #f1fa8c;
+}
+
+.cm-comment {
+    color: #6272a4;
+}
+
+.cm-variable, .cm-property {
+    color: #8be9fd;
+}
+
+.cm-number {
+    color: #bd93f9;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    accent-color: var(--color-text-link-hover);
+}
+
+.form-check-input:checked {
+    background-color: var(--color-text-link-hover);
+    border-color: var(--color-text-link-hover);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Line highlight in code view */
+.highlight-line {
+    background-color: rgba(255, 192, 67, 0.1);
+}
+```
+
+3. Save the file and set proper permissions:
+
+```bash
+sudo chmod 644 /usr/local/hestia/web/css/themes/custom/complete-dark.css
+```
+
+4. Select the new theme in Hestia's settings.
+
+## Key Features
+
+### Color Scheme
+- Dark background (`#1e1e1e`) for consistent dark theme throughout
+- Gold accent color (`#ffc043`) for highlights and hover states
+- Darker table headers (`#4b4b4b`)
+- Modern button colors (`#4f4d4d`)
+
+### UI Enhancements
+- Flat modern design without gradients
+- Improved form controls with proper focus states
+- Enhanced table styling with better row separation
+- Modern button styling with hover effects
+- Custom scrollbars that match the theme
+
+### Code Editor
+- Dedicated styling for code and configuration editors
+- Syntax highlighting for better code readability
+- Dark editor background with proper line numbers
+
+## Customization
+
+You can easily customize this theme by modifying the CSS variables at the top of the file. The most commonly used colors are defined as variables, making it simple to change the color scheme.
+
+## Credits
+- Original Dark theme by Kristan Kenney
+- Custom modifications and enhancements
+
+## License
+This theme is provided as-is under the same license as Hestia Control Panel.
